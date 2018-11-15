@@ -8,9 +8,16 @@ import pandas as pd
 
 def main():
     folium_map = folium.Map([37.7783, -119.4179], zoom_start = 7)
+
     for index, row in config.data.iterrows():
         if np.isnan(row['Latitude']) or np.isnan(row['Longitude']): continue
-        folium.CircleMarker([row['Latitude'], row['Longitude']], radius = 6, popup = str(int(row['Zipcode']))).add_to(folium_map)
+
+        popup_text = """Zipcode: {}<br>
+                        2017 Supply (KW): {}<br>
+                        2017 Demand (KWh): {}"""
+        popup_text = popup_text.format(str(int(row['Zipcode'])), row['Supply_KW'], 1)
+
+        folium.CircleMarker([row['Latitude'], row['Longitude']], radius = 0.001 * row['Supply_KW'], popup = popup_text).add_to(folium_map)
     folium_map.save("/Users/jkhunt/github/batteries-california/test_map.html")
 
 if __name__ == '__main__':

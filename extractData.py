@@ -53,4 +53,4 @@ with open('PGE_2017_Q4.csv', 'r') as csv4_file:
 df = pd.DataFrame.from_dict(data_dict)
 dfT = df.transpose()
 dfT.columns = ['Supply', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-dfT.to_csv('output.csv')
+dfT.to_csv('output_without_locations_2017.csv')

@@ -17,5 +17,8 @@ for index, row in df.iterrows():
 lat_long_df = pd.DataFrame(zipcode_list, columns = ['Latitude', 'Longitude'])
 df = df.join(lat_long_df)
 df = df[[df_columns[0]] + ['Latitude', 'Longitude'] + df_columns[1:]]
+df = df[df['Demand_Month_1_KWh'] != 0]
+df = df.set_index('Zipcode')
+# print df
 # print df.columns.tolist()
 # df.to_csv('/Users/jkhunt/github/batteries-california/output_with_locations_2017.csv', index = False)

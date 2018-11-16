@@ -31,5 +31,7 @@ MONTH_10_KWH = 12
 MONTH_11_KWH = 13
 MONTH_12_KWH = 14
 
-data = parseCSVToDataFrame.df.T.to_dict(orient = 'list')
-test_data = parseCSVToDataFrame.df.iloc[300:320].T.to_dict(orient = 'list')
+data_df = parseCSVToDataFrame.df
+test_data_df = parseCSVToDataFrame.df.iloc[300:320]
+data = data_df.T.to_dict(orient = 'list')
+test_data = test_data_df.T.to_dict(orient = 'list')

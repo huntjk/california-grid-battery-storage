@@ -1,19 +1,15 @@
 import parseCSVToDataFrame
+import zipcode_map
 
-# Insert any global variables here:
+# Modify any global variables here:
+battery_size_MW = 25 # MW size per battery
+battery_month_KWH = battery_size_MW * 1000 * 5 * 30 # size * 1000 * 5 hours * 30 days = 750,000 (size = 5 MW)
+neighbors_percentage_fulfill = 0.2 # percentage of zipcode demand fulfilled for neighbors set precomputation
+percentage_fulfill = 1 # general percentage aim for model
+n_batteries = 40
+n_iters = 50
+k_efficiency_loss = 0.0001 # assumption % per mile (true amount is probably even smaller)
 
-# DataFrame containing all data so far.
-# Uses format 'Zipcode', 'Latitude', 'Longitude', 'Supply (KW)', 'Demand per month (KWh)':
-# To iterate through values:
-#
-# for index, row in config.data.iterrows():
-#   zipcode = row['Zipcode']
-#   latitude, longitude = row['Latitude'], row['Longitude']
-#   supply_KW = row['Supply_KW']
-#   demand_month_1_KWh, demand_month_2_KWh = row['Demand_Month_1_KWh'], row['Demand_Month_2_KWh']
-#
-# Can call up to 'Demand_Month_12_KWh'
-#
 # Indexes
 LATITUDE = 0
 LONGITUDE = 1
@@ -31,5 +27,26 @@ MONTH_10_KWH = 12
 MONTH_11_KWH = 13
 MONTH_12_KWH = 14
 
-data = parseCSVToDataFrame.df.T.to_dict(orient = 'list')
-test_data = parseCSVToDataFrame.df.iloc[300:320].T.to_dict(orient = 'list')
+month_index = MONTH_1_KWH
+
+# IMPORTANT: Do not modify lines below in this section, further global variables are listed below this part!
+# DataFrame containing all data so far.
+# Uses format 'Zipcode', 'Latitude', 'Longitude', 'Supply (KW)', 'Demand per month (KWh)':
+# To iterate through values:
+#
+# for index, row in config.data.iterrows():
+#   zipcode = row['Zipcode']
+#   latitude, longitude = row['Latitude'], row['Longitude']
+#   supply_KW = row['Supply_KW']
+#   demand_month_1_KWh, demand_month_2_KWh = row['Demand_Month_1_KWh'], row['Demand_Month_2_KWh']
+#
+# Can call up to 'Demand_Month_12_KWh'
+data_df = parseCSVToDataFrame.df
+test_data_df = data_df.iloc[300:320]
+data = data_df.T.to_dict(orient = 'list')
+test_data = test_data_df.T.to_dict(orient = 'list')
+test_supply_neighbors = zipcode_map.getReachableNeighbors(test_data, battery_month_KWH, neighbors_percentage_fulfill, month_index)
+
+# Modify as needed below:
+data_set = test_data # represents current data set model uses
+neighbors_set = test_supply_neighbors # represents current neighbors set of data model uses

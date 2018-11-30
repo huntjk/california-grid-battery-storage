@@ -65,7 +65,7 @@ def printInfo(tuple):
     print 'Battery Zipcode Supply Distributions (KWh):'
     util.printDict(tuple[1])
     print 'Zipcode Energy Supplied (KWh):'
-    util.printDict(tuple[2])
+    util.printDictAppend(tuple[2])
 
 if __name__ == '__main__':
 	main()

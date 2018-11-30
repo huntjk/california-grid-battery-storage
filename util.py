@@ -39,6 +39,13 @@ def printDict(input):
             print '{}: {}'.format(k, v)
     print
 
+# Append second dictionary scores
+def printDictAppend(input):
+    for k, v in input.items():
+        total = cfg.data[k][cfg.month_index]
+        print '{}: {} / {} ({:.1%})'.format(k, int(v), int(total), (v / total))
+    print
+
 # Indexes
 LATITUDE = 0
 LONGITUDE = 1

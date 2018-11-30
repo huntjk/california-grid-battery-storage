@@ -24,7 +24,8 @@ def graph(battery_locations, energy_mapping):
         folium.Marker([location[0], location[1]]).add_to(folium_map)
 
     for location, energy in energy_mapping.items():
-        folium.CircleMarker([location], radius = 100 * (energy / nf), color='crimson').add_to(folium_map)
+        if energy == 0: continue
+        folium.CircleMarker([location[0], location[1]], radius = 100 * (energy / nf), color = 'crimson').add_to(folium_map)
 
     folium_map.save("/Users/jkhunt/github/batteries-california/test_map.html")
 

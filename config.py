@@ -28,7 +28,6 @@ MONTH_10_KWH = 12
 MONTH_11_KWH = 13
 MONTH_12_KWH = 14
 
-<<<<<<< HEAD
 month_index = MONTH_1_KWH
 
 # IMPORTANT: Do not modify lines below in this section, further global variables are listed below this part!
@@ -52,9 +51,3 @@ test_supply_neighbors = zipcode_map.getReachableNeighbors(test_data, battery_mon
 # Modify as needed below:
 data_set = test_data # represents current data set model uses
 neighbors_set = test_supply_neighbors # represents current neighbors set of data model uses
-=======
-data_df = parseCSVToDataFrame.df
-test_data_df = parseCSVToDataFrame.df.iloc[300:320]
-data = data_df.T.to_dict(orient = 'list')
-test_data = test_data_df.T.to_dict(orient = 'list')
->>>>>>> 6703202d1a5efd12ff6b4fcaeea3a792072888ac

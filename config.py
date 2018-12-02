@@ -6,8 +6,8 @@ battery_size_MW = 20 # MW size per battery
 battery_month_KWH = battery_size_MW * 1000 * 5 * 30 # size * 1000 * 5 hours * 30 days = 750,000 (size = 5 MW)
 neighbors_percentage_fulfill = 0.2 # percentage of zipcode demand fulfilled for neighbors set precomputation
 percentage_fulfill = 1 # general percentage aim for model
-n_batteries = 5
-n_iters = 10
+n_batteries = 40
+n_iters = 1
 n_k_iters = 10
 k_efficiency_loss = 0.0001 # assumption % per mile (true amount is probably even smaller)
 
@@ -49,5 +49,5 @@ test_data = test_data_df.T.to_dict(orient = 'list')
 test_supply_neighbors = zipcode_map.getReachableNeighbors(test_data, battery_month_KWH, neighbors_percentage_fulfill, month_index)
 
 # Modify as needed below:
-data_set = test_data # represents current data set model uses
+data_set = data # represents current data set model uses
 neighbors_set = test_supply_neighbors # represents current neighbors set of data model uses

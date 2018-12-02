@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>L_PREFER_CANVAS=false; L_NO_TOUCH=false; L_DISABLE_3D=false;</script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.2.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawgit.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+    <style>#map_b81d9baeddbf4eedb61aea9f33266dfe {
+        position: relative;
+        width: 100.0%;
+        height: 100.0%;
+        left: 0.0%;
+        top: 0.0%;
+        }
+    </style>
+</head>
+<body>    
+    
+    <div class="folium-map" id="map_b81d9baeddbf4eedb61aea9f33266dfe" ></div>
+</body>
+<script>    
+    
+    
+        var bounds = null;
+    
+
+    var map_b81d9baeddbf4eedb61aea9f33266dfe = L.map(
+        'map_b81d9baeddbf4eedb61aea9f33266dfe', {
+        center: [37.804, -122.2711],
+        zoom: 12,
+        maxBounds: bounds,
+        layers: [],
+        worldCopyJump: false,
+        crs: L.CRS.EPSG3857,
+        zoomControl: true,
+        });
+
+    
+    
+    var tile_layer_4f9ebc7d819e43a4a0ccb25cd07f865f = L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+        "attribution": null, 
+        "detectRetina": false, 
+        "maxNativeZoom": 18, 
+        "maxZoom": 18, 
+        "minZoom": 0, 
+        "noWrap": false, 
+        "subdomains": "abc"
+}).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+    
+            var circle_marker_f0e081172ec14d17a83e02c482774c1d = L.circleMarker(
+                [37.866536, -122.257996],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 27.3651208190213, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_e799669cc66a430ab79de576b3c902ef = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_ef404a69e51a405885164075d714d600 = $('<div id="html_ef404a69e51a405885164075d714d600" style="width: 100.0%; height: 100.0%;">Zipcode: 94704<br>                         2017 Supply (KW): 242.147<br>                         2017 Demand (KWh): 9318146.0</div>')[0];
+                popup_e799669cc66a430ab79de576b3c902ef.setContent(html_ef404a69e51a405885164075d714d600);
+            
+
+            circle_marker_f0e081172ec14d17a83e02c482774c1d.bindPopup(popup_e799669cc66a430ab79de576b3c902ef)
+            ;
+
+            
+        
+    
+            var circle_marker_87bf230110a341779579c58d60d05886 = L.circleMarker(
+                [37.865183, -122.238209],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 7.93988683739517, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_edcb2bc5589441d1b01d90def811a4ae = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_5bcfa7a7a09840ab99d2ac4ab0870a57 = $('<div id="html_5bcfa7a7a09840ab99d2ac4ab0870a57" style="width: 100.0%; height: 100.0%;">Zipcode: 94705<br>                         2017 Supply (KW): 190.528<br>                         2017 Demand (KWh): 2703625.0</div>')[0];
+                popup_edcb2bc5589441d1b01d90def811a4ae.setContent(html_5bcfa7a7a09840ab99d2ac4ab0870a57);
+            
+
+            circle_marker_87bf230110a341779579c58d60d05886.bindPopup(popup_edcb2bc5589441d1b01d90def811a4ae)
+            ;
+
+            
+        
+    
+            var circle_marker_3f6e26ec0e24410585bb0d597eed02c4 = L.circleMarker(
+                [37.889704, -122.295531],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 8.10376663033508, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_9a04d262b40242c5b2e10f7cc21b647f = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_daef6b991a33410ba2790a01e8919951 = $('<div id="html_daef6b991a33410ba2790a01e8919951" style="width: 100.0%; height: 100.0%;">Zipcode: 94706<br>                         2017 Supply (KW): 98.003<br>                         2017 Demand (KWh): 2759428.0</div>')[0];
+                popup_9a04d262b40242c5b2e10f7cc21b647f.setContent(html_daef6b991a33410ba2790a01e8919951);
+            
+
+            circle_marker_3f6e26ec0e24410585bb0d597eed02c4.bindPopup(popup_9a04d262b40242c5b2e10f7cc21b647f)
+            ;
+
+            
+        
+    
+            var circle_marker_dc9d0743f7a04d63885ba9454c3104af = L.circleMarker(
+                [37.80432, -122.207545],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 15.879688508867446, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_dc06da92f836410c948513cbeba4ba53 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_e86a85b38a464233b87a732526f13c69 = $('<div id="html_e86a85b38a464233b87a732526f13c69" style="width: 100.0%; height: 100.0%;">Zipcode: 94602<br>                         2017 Supply (KW): 373.062<br>                         2017 Demand (KWh): 5407221.0</div>')[0];
+                popup_dc06da92f836410c948513cbeba4ba53.setContent(html_e86a85b38a464233b87a732526f13c69);
+            
+
+            circle_marker_dc9d0743f7a04d63885ba9454c3104af.bindPopup(popup_dc06da92f836410c948513cbeba4ba53)
+            ;
+
+            
+        
+    
+            var circle_marker_e15d554e6e9c49e2af7cd143a0114868 = L.circleMarker(
+                [37.736529, -122.179445],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 22.41908928965688, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_0ac71b6a15044731b5e4fbca659d2eef = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_0c55fdd565a946e89ec2cd5e99a346c0 = $('<div id="html_0c55fdd565a946e89ec2cd5e99a346c0" style="width: 100.0%; height: 100.0%;">Zipcode: 94603<br>                         2017 Supply (KW): 1357.805<br>                         2017 Demand (KWh): 7633964.0</div>')[0];
+                popup_0ac71b6a15044731b5e4fbca659d2eef.setContent(html_0c55fdd565a946e89ec2cd5e99a346c0);
+            
+
+            circle_marker_e15d554e6e9c49e2af7cd143a0114868.bindPopup(popup_0ac71b6a15044731b5e4fbca659d2eef)
+            ;
+
+            
+        
+    
+            var circle_marker_ffb7848280734e54b016c830b97c5f7d = L.circleMarker(
+                [37.761408, -122.150198],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 39.72513080164216, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_4a894919b2f449f8b0990f49d814dd16 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_ee04d13703114d6fa3021d8f630ca962 = $('<div id="html_ee04d13703114d6fa3021d8f630ca962" style="width: 100.0%; height: 100.0%;">Zipcode: 94605<br>                         2017 Supply (KW): 786.223<br>                         2017 Demand (KWh): 13526875.0</div>')[0];
+                popup_4a894919b2f449f8b0990f49d814dd16.setContent(html_ee04d13703114d6fa3021d8f630ca962);
+            
+
+            circle_marker_ffb7848280734e54b016c830b97c5f7d.bindPopup(popup_4a894919b2f449f8b0990f49d814dd16)
+            ;
+
+            
+        
+    
+            var circle_marker_5b23c315a2e24198af51801d245bae26 = L.circleMarker(
+                [37.791887, -122.245334],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 31.348069661495998, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_480588f0c6124d6392222669535bba84 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_6eb00d447a214500ad66e9a3afd88df0 = $('<div id="html_6eb00d447a214500ad66e9a3afd88df0" style="width: 100.0%; height: 100.0%;">Zipcode: 94606<br>                         2017 Supply (KW): 550.751<br>                         2017 Demand (KWh): 10674387.0</div>')[0];
+                popup_480588f0c6124d6392222669535bba84.setContent(html_6eb00d447a214500ad66e9a3afd88df0);
+            
+
+            circle_marker_5b23c315a2e24198af51801d245bae26.bindPopup(popup_480588f0c6124d6392222669535bba84)
+            ;
+
+            
+        
+    
+            var circle_marker_6b0ed58e2f724acb955f4b18248ca662 = L.circleMarker(
+                [37.807215, -122.301497],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 59.01561173595815, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_fc52028c3ba447b99bee6a8a9361263f = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_132fa0d3385047919a88d1a8fc5987e8 = $('<div id="html_132fa0d3385047919a88d1a8fc5987e8" style="width: 100.0%; height: 100.0%;">Zipcode: 94607<br>                         2017 Supply (KW): 2266.579<br>                         2017 Demand (KWh): 20095511.0</div>')[0];
+                popup_fc52028c3ba447b99bee6a8a9361263f.setContent(html_132fa0d3385047919a88d1a8fc5987e8);
+            
+
+            circle_marker_6b0ed58e2f724acb955f4b18248ca662.bindPopup(popup_fc52028c3ba447b99bee6a8a9361263f)
+            ;
+
+            
+        
+    
+            var circle_marker_a058bffdc78b4f059d7325b37cdda9a5 = L.circleMarker(
+                [37.836844, -122.289143],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 58.3181938668906, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_dea3c952c13a4696845c4c60dd7b2153 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_a2f89959796d4f3eb42b5181bc2fe60b = $('<div id="html_a2f89959796d4f3eb42b5181bc2fe60b" style="width: 100.0%; height: 100.0%;">Zipcode: 94608<br>                         2017 Supply (KW): 2333.9<br>                         2017 Demand (KWh): 19858032.0</div>')[0];
+                popup_dea3c952c13a4696845c4c60dd7b2153.setContent(html_a2f89959796d4f3eb42b5181bc2fe60b);
+            
+
+            circle_marker_a058bffdc78b4f059d7325b37cdda9a5.bindPopup(popup_dea3c952c13a4696845c4c60dd7b2153)
+            ;
+
+            
+        
+    
+            var circle_marker_4f60c87772db41f181ea0f5e4ec04861 = L.circleMarker(
+                [37.834403, -122.264368],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 10.307384960367598, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_93bb125b6b90413aab4cc2aafad94fa9 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_1407f64f7ad54dcaaac9143b1e5fb2f6 = $('<div id="html_1407f64f7ad54dcaaac9143b1e5fb2f6" style="width: 100.0%; height: 100.0%;">Zipcode: 94609<br>                         2017 Supply (KW): 281.843<br>                         2017 Demand (KWh): 3509786.0</div>')[0];
+                popup_93bb125b6b90413aab4cc2aafad94fa9.setContent(html_1407f64f7ad54dcaaac9143b1e5fb2f6);
+            
+
+            circle_marker_4f60c87772db41f181ea0f5e4ec04861.bindPopup(popup_93bb125b6b90413aab4cc2aafad94fa9)
+            ;
+
+            
+        
+    
+            var circle_marker_fb11e681e0a5450e8052ab09c412d01b = L.circleMarker(
+                [37.811406, -122.242458],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 19.353853191217055, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_9a72c26863f8417a8f75ca7fcd208861 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_9fee705a978f44009b9651d38a65697f = $('<div id="html_9fee705a978f44009b9651d38a65697f" style="width: 100.0%; height: 100.0%;">Zipcode: 94610<br>                         2017 Supply (KW): 888.075<br>                         2017 Demand (KWh): 6590215.0</div>')[0];
+                popup_9a72c26863f8417a8f75ca7fcd208861.setContent(html_9fee705a978f44009b9651d38a65697f);
+            
+
+            circle_marker_fb11e681e0a5450e8052ab09c412d01b.bindPopup(popup_9a72c26863f8417a8f75ca7fcd208861)
+            ;
+
+            
+        
+    
+            var circle_marker_4992446c3f7148d3841900ed1117326e = L.circleMarker(
+                [37.82935, -122.203507],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 27.665850503028118, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_9663b96d8ea44106bc4723ab5730156e = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_336b0fb8e4cd480c842c9d90946dff7a = $('<div id="html_336b0fb8e4cd480c842c9d90946dff7a" style="width: 100.0%; height: 100.0%;">Zipcode: 94611<br>                         2017 Supply (KW): 1109.49<br>                         2017 Demand (KWh): 9420548.0</div>')[0];
+                popup_9663b96d8ea44106bc4723ab5730156e.setContent(html_336b0fb8e4cd480c842c9d90946dff7a);
+            
+
+            circle_marker_4992446c3f7148d3841900ed1117326e.bindPopup(popup_9663b96d8ea44106bc4723ab5730156e)
+            ;
+
+            
+        
+    
+            var circle_marker_0b5613e7471f46e48c42f183489108cc = L.circleMarker(
+                [37.8088, -122.269196],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 100.0, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_6a384855940d4d529a286a9eef12b18a = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_e54027f0f86d476e85ede58c19499eac = $('<div id="html_e54027f0f86d476e85ede58c19499eac" style="width: 100.0%; height: 100.0%;">Zipcode: 94612<br>                         2017 Supply (KW): 1223.386<br>                         2017 Demand (KWh): 34051178.0</div>')[0];
+                popup_6a384855940d4d529a286a9eef12b18a.setContent(html_e54027f0f86d476e85ede58c19499eac);
+            
+
+            circle_marker_0b5613e7471f46e48c42f183489108cc.bindPopup(popup_6a384855940d4d529a286a9eef12b18a)
+            ;
+
+            
+        
+    
+            var circle_marker_05358cb8752c4357b4684f760882a9bc = L.circleMarker(
+                [37.865777, -122.286321],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 15.661496351168818, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_5b5341cacf2349259d9625ac80ff06c7 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_90a3793354ec4393a05451bbce440792 = $('<div id="html_90a3793354ec4393a05451bbce440792" style="width: 100.0%; height: 100.0%;">Zipcode: 94702<br>                         2017 Supply (KW): 287.485<br>                         2017 Demand (KWh): 5332924.0</div>')[0];
+                popup_5b5341cacf2349259d9625ac80ff06c7.setContent(html_90a3793354ec4393a05451bbce440792);
+            
+
+            circle_marker_05358cb8752c4357b4684f760882a9bc.bindPopup(popup_5b5341cacf2349259d9625ac80ff06c7)
+            ;
+
+            
+        
+    
+            var circle_marker_5d0c7f30eeca4eb0ae03fd4c57938741 = L.circleMarker(
+                [37.863911, -122.275643],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 8.942518816823313, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_45ab4f4c2475438083bf6980cd41698b = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_d11baab56d8e40afb6d0fc382942a895 = $('<div id="html_d11baab56d8e40afb6d0fc382942a895" style="width: 100.0%; height: 100.0%;">Zipcode: 94703<br>                         2017 Supply (KW): 371.049<br>                         2017 Demand (KWh): 3045033.0</div>')[0];
+                popup_45ab4f4c2475438083bf6980cd41698b.setContent(html_d11baab56d8e40afb6d0fc382942a895);
+            
+
+            circle_marker_5d0c7f30eeca4eb0ae03fd4c57938741.bindPopup(popup_45ab4f4c2475438083bf6980cd41698b)
+            ;
+
+            
+        
+    
+            var circle_marker_67e38be779984ceeb161f635461423d3 = L.circleMarker(
+                [37.898189, -122.27913],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 7.886179444364598, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_233a8e3d307e41e486d158963c3d263e = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_c66e5be428f042088145c8183fa2c14b = $('<div id="html_c66e5be428f042088145c8183fa2c14b" style="width: 100.0%; height: 100.0%;">Zipcode: 94707<br>                         2017 Supply (KW): 131.231<br>                         2017 Demand (KWh): 2685337.0</div>')[0];
+                popup_233a8e3d307e41e486d158963c3d263e.setContent(html_c66e5be428f042088145c8183fa2c14b);
+            
+
+            circle_marker_67e38be779984ceeb161f635461423d3.bindPopup(popup_233a8e3d307e41e486d158963c3d263e)
+            ;
+
+            
+        
+    
+            var circle_marker_34d59069f47040d49b492d21c7ace522 = L.circleMarker(
+                [37.902944, -122.261795],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 7.725632869441404, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_13b74d232da1448c8279495b65178709 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_dfe6263c317944e4a19585af632eab96 = $('<div id="html_dfe6263c317944e4a19585af632eab96" style="width: 100.0%; height: 100.0%;">Zipcode: 94708<br>                         2017 Supply (KW): 72.822<br>                         2017 Demand (KWh): 2630669.0</div>')[0];
+                popup_13b74d232da1448c8279495b65178709.setContent(html_dfe6263c317944e4a19585af632eab96);
+            
+
+            circle_marker_34d59069f47040d49b492d21c7ace522.bindPopup(popup_13b74d232da1448c8279495b65178709)
+            ;
+
+            
+        
+    
+            var circle_marker_d541dd1e28b642b38b0481f7c1da1a65 = L.circleMarker(
+                [37.844672, -122.238105],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 10.829601842262255, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_0895203314214744aa87f099bd8e7ae2 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_420e5688ed294ecb829a79af8d22766c = $('<div id="html_420e5688ed294ecb829a79af8d22766c" style="width: 100.0%; height: 100.0%;">Zipcode: 94618<br>                         2017 Supply (KW): 114.633<br>                         2017 Demand (KWh): 3687607.0</div>')[0];
+                popup_0895203314214744aa87f099bd8e7ae2.setContent(html_420e5688ed294ecb829a79af8d22766c);
+            
+
+            circle_marker_d541dd1e28b642b38b0481f7c1da1a65.bindPopup(popup_0895203314214744aa87f099bd8e7ae2)
+            ;
+
+            
+        
+    
+            var circle_marker_cfa8107fab1644a98a6686130e88df75 = L.circleMarker(
+                [37.790438, -122.140819],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 14.201482251216097, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_9a3804ad474d4d6daf68f45e8c75e743 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_cfab654a2c7d49dbb5a4d5603b769c47 = $('<div id="html_cfab654a2c7d49dbb5a4d5603b769c47" style="width: 100.0%; height: 100.0%;">Zipcode: 94619<br>                         2017 Supply (KW): 1225.061<br>                         2017 Demand (KWh): 4835772.0</div>')[0];
+                popup_9a3804ad474d4d6daf68f45e8c75e743.setContent(html_cfab654a2c7d49dbb5a4d5603b769c47);
+            
+
+            circle_marker_cfa8107fab1644a98a6686130e88df75.bindPopup(popup_9a3804ad474d4d6daf68f45e8c75e743)
+            ;
+
+            
+        
+    
+            var circle_marker_9eaba10852d14557beb0d2e4b13c8280 = L.circleMarker(
+                [37.748272, -122.216825],
+                {
+  "bubblingMouseEvents": true, 
+  "color": "#3388ff", 
+  "dashArray": null, 
+  "dashOffset": null, 
+  "fill": false, 
+  "fillColor": "#3388ff", 
+  "fillOpacity": 0.2, 
+  "fillRule": "evenodd", 
+  "lineCap": "round", 
+  "lineJoin": "round", 
+  "opacity": 1.0, 
+  "radius": 42.083119708810074, 
+  "stroke": true, 
+  "weight": 3
+}
+                )
+                .addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+            
+    
+            var popup_1089a17d2bd34fd69b3a2742464974b6 = L.popup({maxWidth: '300'
+            
+            });
+
+            
+                var html_6783592a3a3e4540bd429fcb0be79bb2 = $('<div id="html_6783592a3a3e4540bd429fcb0be79bb2" style="width: 100.0%; height: 100.0%;">Zipcode: 94621<br>                         2017 Supply (KW): 2243.059<br>                         2017 Demand (KWh): 14329798.0</div>')[0];
+                popup_1089a17d2bd34fd69b3a2742464974b6.setContent(html_6783592a3a3e4540bd429fcb0be79bb2);
+            
+
+            circle_marker_9eaba10852d14557beb0d2e4b13c8280.bindPopup(popup_1089a17d2bd34fd69b3a2742464974b6)
+            ;
+
+            
+        
+    
+        var marker_b924b607c25c48dbadee90747846c05e = L.marker(
+            [37.844672, -122.238105],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_f1d317b5109c4acab95e01050ccbadb4 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_b924b607c25c48dbadee90747846c05e.setIcon(icon_f1d317b5109c4acab95e01050ccbadb4);
+            
+    
+        var marker_8f2887b97bd24e268870ae5821f21e15 = L.marker(
+            [37.898189, -122.27913],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_984e240fe2494c7589613ab640b9f508 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_8f2887b97bd24e268870ae5821f21e15.setIcon(icon_984e240fe2494c7589613ab640b9f508);
+            
+    
+        var marker_3a39e0ff792a4a36b0d82186be0b41db = L.marker(
+            [37.8088, -122.269196],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_ca13498a724341ff81cf5013a4740454 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_3a39e0ff792a4a36b0d82186be0b41db.setIcon(icon_ca13498a724341ff81cf5013a4740454);
+            
+    
+        var marker_3f73848d5c994ce4b5987b4a758a7a96 = L.marker(
+            [37.761408, -122.150198],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_6460ff5d466543b39aa7efce430e4f07 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_3f73848d5c994ce4b5987b4a758a7a96.setIcon(icon_6460ff5d466543b39aa7efce430e4f07);
+            
+    
+        var marker_54b664e077544ae288a21a1422abb911 = L.marker(
+            [37.791887, -122.245334],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_508aca78af9548d580994d23be00d833 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'blue',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_54b664e077544ae288a21a1422abb911.setIcon(icon_508aca78af9548d580994d23be00d833);
+            
+    
+        var marker_b057bd9a800948cbbf3478b9a0f5454c = L.marker(
+            [37.8480288, -122.240437],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_34a2dd3d9b5944e69814e02513f40d74 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'red',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_b057bd9a800948cbbf3478b9a0f5454c.setIcon(icon_34a2dd3d9b5944e69814e02513f40d74);
+            
+    
+        var marker_aa50aaa31bde461bad0956b41545ffbe = L.marker(
+            [37.884105, -122.279684],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_28e871abe1f045139099e0438309a3ec = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'red',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_aa50aaa31bde461bad0956b41545ffbe.setIcon(icon_28e871abe1f045139099e0438309a3ec);
+            
+    
+        var marker_dafb0ab86fba448781264ea419dbde6a = L.marker(
+            [37.8176196667, -122.286612],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_a4949650e11a4298a23fec83f31e3992 = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'red',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_dafb0ab86fba448781264ea419dbde6a.setIcon(icon_a4949650e11a4298a23fec83f31e3992);
+            
+    
+        var marker_8afae4ff962b4eb99bf4228c23eb1635 = L.marker(
+            [37.7627916667, -122.156820667],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_d3d8f51ed7a74e4e907dc50f1b2e722e = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'red',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_8afae4ff962b4eb99bf4228c23eb1635.setIcon(icon_d3d8f51ed7a74e4e907dc50f1b2e722e);
+            
+    
+        var marker_2460f254cd58413295467b4aa4d86f1e = L.marker(
+            [37.78897125, -122.2280405],
+            {
+                icon: new L.Icon.Default()
+                }
+            ).addTo(map_b81d9baeddbf4eedb61aea9f33266dfe);
+        
+    
+
+                var icon_821b9ee071fe42b986db33e54c7a319e = L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    iconColor: 'white',
+                    markerColor: 'red',
+                    prefix: 'glyphicon',
+                    extraClasses: 'fa-rotate-0'
+                    });
+                marker_2460f254cd58413295467b4aa4d86f1e.setIcon(icon_821b9ee071fe42b986db33e54c7a319e);
+            
+</script>

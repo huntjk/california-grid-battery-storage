@@ -8,7 +8,7 @@ import pandas as pd
 
 data = cfg.data_set
 # folium_map = folium.Map([37.7783, -119.4179], zoom_start = 7)
-folium_map = folium.Map([37.804, -122.2711], zoom_start = 12)
+folium_map = folium.Map([37.805, -122.2711], zoom_start = 12)
 colors = [
     'red',
     'blue',

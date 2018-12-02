@@ -46,7 +46,6 @@ def graph(battery_locations, energy_mapping):
     for location, energy in energy_mapping.items():
         if energy == 0: continue
         folium.CircleMarker([location[0], location[1]], radius = 100 * (energy / nf), color = 'crimson').add_to(folium_map)
-        popup_text = popup_text.format(str(index), row['Supply_KW'], sum(cfg.test_data[index][cfg.MONTH_1_KWH:]))
 
     folium_map.save("/Users/jkhunt/github/batteries-california/test_map.html")
 

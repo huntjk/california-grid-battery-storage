@@ -47,7 +47,7 @@ def graph(battery_locations, energy_mapping):
         if energy == 0: continue
         folium.CircleMarker([location[0], location[1]], radius = 100 * (energy / nf), color = 'crimson').add_to(folium_map)
 
-    folium_map.save("/Users/jkhunt/github/batteries-california/test_map.html")
+    folium_map.save("test_map.html")
 
 def graph_scikit(battery_locations, zip_coords, distribution):
     nf = getNormalizeFactor(cfg.month_index) # maximize size of possible ring radius
@@ -63,7 +63,7 @@ def graph_scikit(battery_locations, zip_coords, distribution):
             # folium.CircleMarker([values[cfg.LATITUDE], values[cfg.LONGITUDE]], radius = 100 * (values[cfg.month_index] / nf), popup = popup_text).add_to(folium_map)
             folium.CircleMarker(zip_coords[val], radius = 10, color = colors[i % len(colors)]).add_to(folium_map)
 
-    folium_map.save("/Users/jkhunt/github/batteries-california/scikit_map.html")
+    folium_map.save("scikit_map.html")
 
 def graph_comparison(battery_locations_start, battery_locations_end):
     nf = getNormalizeFactor(cfg.month_index) # maximize size of possible ring radius
@@ -81,7 +81,7 @@ def graph_comparison(battery_locations_start, battery_locations_end):
     for location in battery_locations_end.values():
         folium.Marker([location[0][0], location[0][1]], icon = folium.Icon(color = 'red')).add_to(folium_map)
 
-    folium_map.save("/Users/jkhunt/github/batteries-california/comparison_map.html")
+    folium_map.save("comparison_map.html")
 
 def getNormalizeFactor(index):
     return max([x[index] for x in cfg.data_set.values()])

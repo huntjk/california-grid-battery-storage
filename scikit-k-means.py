@@ -8,7 +8,7 @@ import copy
 from sklearn.cluster import KMeans
 
 data = cfg.data_set
-
+#k - means multiple iterations
 def main():
     zip_coords = []
     zip_weights = []

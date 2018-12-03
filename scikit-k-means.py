@@ -17,23 +17,32 @@ def main():
         zip_coords.append([val[0], val[1]])
         zip_weights.append(val[cfg.month_index])
         zip_map.append(zipcode)
+
+    battery_energies = [cfg.battery_month_KWH for i in range(cfg.n_batteries)]
+    battery_supplied_zipcodes = [col.defaultdict(float) for i in range(cfg.n_batteries)]
+    energy_supplied_zipcodes = np.zeros(len(zip_coords))
+    # repeat_it = False
+
+    # while sum(battery_energies) > 0:
+        # if repeat_it:
+        #     zip_weights -= energy_supplied_zipcodes
+        #     print energy_supplied_zipcodes
+        #     print zip_weights
     kmeans = KMeans(n_clusters = cfg.n_batteries, init = 'k-means++', n_init = cfg.n_k_iters)
     kmeans.fit(np.array(zip_coords), sample_weight = np.array(zip_weights))
     distribution = label_distribution(kmeans.labels_)
     sort_distribution(distribution, zip_coords, kmeans.cluster_centers_)
 
-    battery_supplied_zipcodes = [col.defaultdict(float) for i in range(cfg.n_batteries)]
-    energy_supplied_zipcodes = np.zeros(len(data.values()))
-    battery_energies = [cfg.battery_month_KWH for i in range(cfg.n_batteries)]
     for index, zip_indexes in distribution.items():
         battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_weights, energy_supplied_zipcodes, tuple(kmeans.cluster_centers_[index]), zip_coords)
+        # repeat_it = True
 
     printInfo((scoreFunction(energy_supplied_zipcodes, zip_weights), battery_supplied_zipcodes, energy_supplied_zipcodes), zip_weights, zip_map)
 
     # print kmeans.inertia_
     # print_distribution_info(distribution, zip_weights)
     # detect_stacked(kmeans.cluster_centers_)
-    gp.graph_scikit(kmeans.cluster_centers_, zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes)
+    gp.graph_scikit(kmeans.cluster_centers_, zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, zip_weights)
 
 def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_demands, energy_supplied_zipcodes, battery_coord, zip_coords):
     for zip_index in zip_indexes:
@@ -44,6 +53,7 @@ def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_z
         if battery_energies[index] + current_zip_supply <= zip_energy_demand:
             energy_supplied_zipcodes[zip_index] += util.energyLoss(distance, battery_energies[index])
             battery_supplied_zipcodes[index][zip_index] += battery_energies[index]
+            battery_energies[index] = 0
             break
         else:
             required_energy_to_max = zip_energy_demand - current_zip_supply

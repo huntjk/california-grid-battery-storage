@@ -2,11 +2,11 @@ import parseCSVToDataFrame
 import zipcode_map
 
 # Modify any global variables here:
-battery_size_MW = 20 # MW size per battery
+battery_size_MW = 100 # MW size per battery
 battery_month_KWH = battery_size_MW * 1000 * 5 * 30 # size * 1000 * 5 hours * 30 days = 750,000 (size = 5 MW)
 neighbors_percentage_fulfill = 0.2 # percentage of zipcode demand fulfilled for neighbors set precomputation
 percentage_fulfill = 1 # general percentage aim for model
-n_batteries = 40
+n_batteries = 200
 n_iters = 1
 n_k_iters = 10
 k_efficiency_loss = 0.0001 # assumption % per mile (true amount is probably even smaller)

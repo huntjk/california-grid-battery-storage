@@ -6,6 +6,7 @@ import collections as col
 import graphPlot as gp
 import copy
 from sklearn.cluster import KMeans
+import make_big_map as mp
 
 data = cfg.data_set
 #k - means multiple iterations
@@ -57,7 +58,12 @@ def main():
     # print kmeans.inertia_
     # print_distribution_info(distribution, zip_weights)
     # detect_stacked(kmeans.cluster_centers_)
-    gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
+    #gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
+
+    # make map of cluster assignments and map of energy supplied to zip codes
+    mp.graph_clusters(battery_locations, battery_supplied_zipcodes, original_zip_coords)
+    mp.graph_supplied_energy(battery_locations, energy_supplied_zipcodes, original_zip_weights, original_zip_coords)
+
 
 def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_demands, energy_supplied_zipcodes, battery_coord, zip_coords):
     for zip_index in zip_indexes:

@@ -84,7 +84,7 @@ def scoreFunction(energy_supplied_zipcodes, zip_demands):
     for index, val in enumerate(energy_supplied_zipcodes):
         score += val
         total += zip_demands[index]
-    return score / total
+    return (score / total, total)
 
 def sort_distribution(distribution, coords, centers):
     for i, index in enumerate(distribution):
@@ -123,7 +123,9 @@ def detect_stacked(centers):
     print len(result)
 
 def printInfo(val, zip_demands, zip_map):
-    print 'Final Score: {} (given {} batteries of size {} MW)\n'.format(val[0], cfg.n_batteries, cfg.battery_size_MW)
+    print '\nFinal Score: {} (given {} batteries of size {} MW)'.format(val[0][0], cfg.n_batteries, cfg.battery_size_MW)
+    print 'Perfect Score: {}'.format((cfg.n_batteries * cfg.battery_month_KWH) / val[0][1])
+    print 'Our solution reaches {:.1%} of perfect score.\n'.format(val[0][0] / ((cfg.n_batteries * cfg.battery_month_KWH) / val[0][1]))
     print 'Battery Zipcode Supply Distributions (KWh):'
     util.printListDict(val[1], zip_map)
     print 'Zipcode Energy Supplied (KWh):'

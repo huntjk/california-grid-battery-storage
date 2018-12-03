@@ -6,9 +6,12 @@ import collections as col
 import graphPlot as gp
 import copy
 from sklearn.cluster import KMeans
+import math
 
 data = cfg.data_set
-#k - means multiple iterations
+ITERS = 500
+K_LTLG = 111
+#k - means multiple iterations and SGD
 def main():
     zip_coords = []
     zip_weights = []
@@ -57,7 +60,42 @@ def main():
     # print kmeans.inertia_
     # print_distribution_info(distribution, zip_weights)
     # detect_stacked(kmeans.cluster_centers_)
-    gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
+
+    #old call for graphing
+    #gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
+
+    
+    # Call gradient descent to shift the battery locations within a cluster to minimize energy loss from distance traveled 
+    #print "BEFORE:"
+    #for i in range(10):
+        #print battery_locations[i]
+    #gradientDescent(ITERS, battery_locations, battery_supplied_zipcodes, original_zip_coords)
+    #print "AFTER:"
+    #for i in range(10):
+        #print battery_locations[i]
+
+def gradientDescent(numIters, batteryLocations, clusters, zip_coords):
+  radius = 6372.8
+  #run GD for each cluster
+  for i in range(len(clusters)):
+    (lat1, long1) = batteryLocations[i]
+    for j in range(numIters):
+      stepSize = 1/math.sqrt(j+1)
+      changeInLat = 0
+      changeInLong = 0
+      #sum up the total for each zipcode in the cluster
+      for zipCode in clusters[i]:
+        (lat2, long2) = zip_coords[zipCode]
+        x = (long1 - long2) * math.cos((lat1 + lat2) / 2)
+        y = lat1 - lat2
+        d = (radius * math.sqrt(x**2 + y**2))/K_LTLG
+        if d == 0: continue 
+        changeInLat += clusters[i][zipCode] * (1 - cfg.k_efficiency_loss)**d * (radius**2 / (2*d)) * (-x*math.sin((lat1 + lat2) / 2) +  2*y)
+        changeInLong += clusters[i][zipCode] * (1 - cfg.k_efficiency_loss)**d * (radius**2 / (2*d)) * (2*x*math.cos((lat1 + lat2) / 2))
+      lat1 -= stepSize*changeInLat
+      long1 -= stepSize*changeInLong
+    #update battery location
+    batteryLocations[i] = (lat1, long1)
 
 def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_demands, energy_supplied_zipcodes, battery_coord, zip_coords):
     for zip_index in zip_indexes:

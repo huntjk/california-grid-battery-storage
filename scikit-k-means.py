@@ -19,6 +19,7 @@ def main():
         zip_map.append(zipcode)
     original_zip_weights = copy.deepcopy(zip_weights)
     original_zip_coords = copy.deepcopy(zip_coords)
+    battery_locations = []
     solved_zip_indexes = []
     remaining_battery_indexes = [i for i in range(cfg.n_batteries)]
 
@@ -42,7 +43,11 @@ def main():
         for i, index in enumerate(distribution):
             battery_assignments(index, distribution[index], battery_energies, battery_supplied_zipcodes, original_zip_weights, energy_supplied_zipcodes, tuple(kmeans.cluster_centers_[i]), original_zip_coords)
         remaining_battery_indexes = [index for index, val in enumerate(battery_energies) if val > 0]
-        print remaining_battery_indexes
+        if iteration == 0:
+            battery_locations = kmeans.cluster_centers_
+        else:
+            for i, index in enumerate(remaining_battery_indexes):
+                battery_locations[index] = kmeans.cluster_centers_[i]
         iteration += 1
 
         print 'Iteration {} Score = {}'.format(iteration, scoreFunction(energy_supplied_zipcodes, original_zip_weights))
@@ -52,7 +57,7 @@ def main():
     # print kmeans.inertia_
     # print_distribution_info(distribution, zip_weights)
     # detect_stacked(kmeans.cluster_centers_)
-    gp.graph_scikit(kmeans.cluster_centers_, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
+    gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
 
 def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_demands, energy_supplied_zipcodes, battery_coord, zip_coords):
     for zip_index in zip_indexes:

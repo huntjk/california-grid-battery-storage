@@ -5,8 +5,8 @@ df_columns = ['Zipcode', 'Supply_KW', 'Demand_Month_1_KWh', 'Demand_Month_2_KWh'
 
 # Read in 2017 supply demand data csv and output dataframe including zipcode location data.
 # Uses format 'Zipcode', 'Latitude', 'Longitude', 'Supply (KW)', 'Demand per month (KWh)'
-df = pd.read_csv('/Users/jkhunt/github/batteries-california/output_without_locations_2017.csv')
-zipcode_df = pd.read_csv('/Users/jkhunt/github/batteries-california/US_Zipcodes.csv', skiprows = range(1, 30022))
+df = pd.read_csv('data/output_without_locations_2017.csv')
+zipcode_df = pd.read_csv('data/US_Zipcodes.csv', skiprows = range(1, 30022))
 df.columns = df_columns
 
 zipcode_list = []

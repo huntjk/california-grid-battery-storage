@@ -6,9 +6,10 @@ import collections as col
 import graphPlot as gp
 import copy
 from sklearn.cluster import KMeans
+import make_big_map as mp
 
 data = cfg.data_set
-
+#k - means multiple iterations
 def main():
     zip_coords = []
     zip_weights = []
@@ -17,23 +18,51 @@ def main():
         zip_coords.append([val[0], val[1]])
         zip_weights.append(val[cfg.month_index])
         zip_map.append(zipcode)
-    kmeans = KMeans(n_clusters = cfg.n_batteries, init = 'k-means++', n_init = cfg.n_k_iters)
-    kmeans.fit(np.array(zip_coords), sample_weight = np.array(zip_weights))
-    distribution = label_distribution(kmeans.labels_)
-    sort_distribution(distribution, zip_coords, kmeans.cluster_centers_)
+    original_zip_weights = copy.deepcopy(zip_weights)
+    original_zip_coords = copy.deepcopy(zip_coords)
+    battery_locations = []
+    solved_zip_indexes = []
+    remaining_battery_indexes = [i for i in range(cfg.n_batteries)]
 
-    battery_supplied_zipcodes = [col.defaultdict(float) for i in range(cfg.n_batteries)]
-    energy_supplied_zipcodes = np.zeros(len(data.values()))
     battery_energies = [cfg.battery_month_KWH for i in range(cfg.n_batteries)]
-    for index, zip_indexes in distribution.items():
-        battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_weights, energy_supplied_zipcodes, tuple(kmeans.cluster_centers_[index]), zip_coords)
+    battery_supplied_zipcodes = [col.defaultdict(float) for i in range(cfg.n_batteries)]
+    energy_supplied_zipcodes = np.zeros(len(zip_coords))
+    iteration = 0
 
-    printInfo((scoreFunction(energy_supplied_zipcodes, zip_weights), battery_supplied_zipcodes, energy_supplied_zipcodes), zip_weights, zip_map)
+    while len(remaining_battery_indexes) > 0:
+        if iteration > 0:
+            zip_weights = original_zip_weights - energy_supplied_zipcodes
+            solved_zip_indexes = [index for index, val in enumerate(zip_weights) if val == 0]
+            zip_weights = np.delete(original_zip_weights, solved_zip_indexes)
+            zip_coords = np.delete(original_zip_coords, solved_zip_indexes, 0)
+
+        kmeans = KMeans(n_clusters = len(remaining_battery_indexes), init = 'k-means++', n_init = cfg.n_k_iters)
+        kmeans.fit(np.array(zip_coords), sample_weight = np.array(zip_weights))
+        distribution = label_distribution(kmeans.labels_, remaining_battery_indexes)
+        sort_distribution(distribution, zip_coords, kmeans.cluster_centers_)
+
+        for i, index in enumerate(distribution):
+            battery_assignments(index, distribution[index], battery_energies, battery_supplied_zipcodes, original_zip_weights, energy_supplied_zipcodes, tuple(kmeans.cluster_centers_[i]), original_zip_coords)
+        remaining_battery_indexes = [index for index, val in enumerate(battery_energies) if val > 0]
+        if iteration == 0:
+            battery_locations = kmeans.cluster_centers_
+        else:
+            for i, index in enumerate(remaining_battery_indexes):
+                battery_locations[index] = kmeans.cluster_centers_[i]
+        iteration += 1
+
+        print 'Iteration {} Score = {}'.format(iteration, scoreFunction(energy_supplied_zipcodes, original_zip_weights))
+
+    printInfo((scoreFunction(energy_supplied_zipcodes, original_zip_weights), battery_supplied_zipcodes, energy_supplied_zipcodes), original_zip_weights, zip_map)
 
     # print kmeans.inertia_
     # print_distribution_info(distribution, zip_weights)
     # detect_stacked(kmeans.cluster_centers_)
-    gp.graph_scikit(kmeans.cluster_centers_, zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes)
+    #gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
+
+    # make map of cluster assignments and map of energy supplied to zip codes
+    mp.graph_clusters(battery_locations, battery_supplied_zipcodes, original_zip_coords)
+    mp.graph_supplied_energy(battery_locations, energy_supplied_zipcodes, original_zip_weights, original_zip_coords)
 
 def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_demands, energy_supplied_zipcodes, battery_coord, zip_coords):
     for zip_index in zip_indexes:
@@ -44,6 +73,7 @@ def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_z
         if battery_energies[index] + current_zip_supply <= zip_energy_demand:
             energy_supplied_zipcodes[zip_index] += util.energyLoss(distance, battery_energies[index])
             battery_supplied_zipcodes[index][zip_index] += battery_energies[index]
+            battery_energies[index] = 0
             break
         else:
             required_energy_to_max = zip_energy_demand - current_zip_supply
@@ -62,8 +92,8 @@ def scoreFunction(energy_supplied_zipcodes, zip_demands):
     return score / total
 
 def sort_distribution(distribution, coords, centers):
-    for index, arr in distribution.items():
-        distances = [(i, util.getDistance(coords[i], centers[index])) for i in arr]
+    for i, index in enumerate(distribution):
+        distances = [(x, util.getDistance(coords[x], centers[i])) for x in distribution[index]]
         sorted_distances = sorted(distances, key = lambda tup: tup[1])
         distribution[index] = [x for x, y in sorted_distances]
     return distribution
@@ -76,10 +106,10 @@ def print_distribution_info(distribution, weights):
         # print 'Cluster Mean {}: {}'.format(index, mean)
     print 'Min: {}, Max: {}, STD: {}, Average: {}'.format(np.min(result), np.max(result), np.std(result), np.mean(result))
 
-def label_distribution(labels):
+def label_distribution(labels, remaining_battery_indexes):
     result = col.defaultdict(list)
     for index, val in enumerate(labels):
-        result[val].append(index)
+        result[remaining_battery_indexes[val]].append(index)
     # print_distribution_counts(result)
     return result
 
@@ -98,7 +128,7 @@ def detect_stacked(centers):
     print len(result)
 
 def printInfo(val, zip_demands, zip_map):
-    print 'Score: {} (given {} batteries of size {} MW)\n'.format(val[0], cfg.n_batteries, cfg.battery_size_MW)
+    print 'Final Score: {} (given {} batteries of size {} MW)\n'.format(val[0], cfg.n_batteries, cfg.battery_size_MW)
     print 'Battery Zipcode Supply Distributions (KWh):'
     util.printListDict(val[1], zip_map)
     print 'Zipcode Energy Supplied (KWh):'

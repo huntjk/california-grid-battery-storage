@@ -64,6 +64,7 @@ def main():
     mp.graph_clusters(battery_locations, battery_supplied_zipcodes, original_zip_coords)
     mp.graph_supplied_energy(battery_locations, energy_supplied_zipcodes, original_zip_weights, original_zip_coords)
 
+
 def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_demands, energy_supplied_zipcodes, battery_coord, zip_coords):
     for zip_index in zip_indexes:
         if battery_energies[index] <= 0: break

@@ -49,29 +49,25 @@ def graph(battery_locations, energy_mapping):
 
     folium_map.save("test_map.html")
 
-def graph_scikit(battery_locations, zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes):
+def graph_scikit(battery_locations, zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, zip_weights):
     nf = getNormalizeFactor(cfg.month_index) # maximize size of possible ring radius
 
     for index, val in enumerate(energy_supplied_zipcodes):
         if val == 0:
-            folium.CircleMarker(zip_coords[index], radius = 10, color = 'gray').add_to(folium_map)
+            folium.CircleMarker(zip_coords[index], radius = 100 * (zip_weights[index] / nf), color = 'gray').add_to(folium_map)
+
     for i, location in enumerate(battery_locations):
         folium.Marker(location, icon = folium.Icon(color = colors[i % len(colors)])).add_to(folium_map)
-        for val in battery_supplied_zipcodes[i].keys():
+        for index in battery_supplied_zipcodes[i].keys():
             # if np.isnan(values[cfg.LATITUDE]) or np.isnan(values[cfg.LONGITUDE]): continue
             # popup_text = """Zipcode: {}<br>
             #                 2017 Supply (KW): {}<br>
             #                 2017 Demand (KWh): {}"""
             # popup_text = popup_text.format(str(zipcode), values[cfg.SUPPLY_KW], values[cfg.month_index])
             # folium.CircleMarker([values[cfg.LATITUDE], values[cfg.LONGITUDE]], radius = 100 * (values[cfg.month_index] / nf), popup = popup_text).add_to(folium_map)
-            folium.CircleMarker(zip_coords[val], radius = 10, color = colors[i % len(colors)]).add_to(folium_map)
-
-<<<<<<< HEAD
-    folium_map.save("scikit_map.html")
-=======
+            folium.CircleMarker(zip_coords[index], radius = 100 * (zip_weights[index] / nf), color = colors[i % len(colors)]).add_to(folium_map)
 
     folium_map.save("/Users/jkhunt/github/batteries-california/scikit_map.html")
->>>>>>> 8e311f8e6f0f32e70f53439856811c44ef3fca31
 
 def graph_comparison(battery_locations_start, battery_locations_end):
     nf = getNormalizeFactor(cfg.month_index) # maximize size of possible ring radius

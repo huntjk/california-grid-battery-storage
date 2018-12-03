@@ -32,11 +32,11 @@ def inverseEnergyLoss(distance, energy):
 
 # Prints a dictionary (key: val)
 def printDict(input):
-    for k, v in input.items():
+    for index, v in input:
         if isinstance(v, col.Mapping):
-            print '{}: {}'.format(k, dict.__repr__(v))
+            print '{}: {}'.format(index, dict.__repr__(v))
         else:
-            print '{}: {}'.format(k, v)
+            print '{}: {}'.format(index, v)
     print
 
 # Append second dictionary scores
@@ -44,6 +44,24 @@ def printDictAppend(input):
     for k, v in input.items():
         total = cfg.data[k][cfg.month_index]
         print '{}: {} / {} ({:.1%})'.format(k, int(v), int(total), (v / total))
+    print
+
+def printListDict(input, zip_map):
+    for index, v in enumerate(input):
+        if isinstance(v, col.Mapping):
+            zip_v = col.defaultdict(float)
+            for x, y in v.items():
+                zip_v[zip_map[x]] = y
+            print '{}: {}'.format(index, dict.__repr__(zip_v))
+        else:
+            print '{}: {}'.format(index, v)
+    print
+
+# Append second dictionary scores
+def printListDictAppend(input, zip_demands, zip_map):
+    for index, v in enumerate(input):
+        total = zip_demands[index]
+        print '{}: {} / {} ({:.1%})'.format(zip_map[index], int(v), int(total), (v / total))
     print
 
 # Indexes

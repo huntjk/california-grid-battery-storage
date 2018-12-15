@@ -50,14 +50,14 @@ def main():
                 battery_locations[index] = kmeans.cluster_centers_[i]
         iteration += 1
 
-        print 'Iteration {} Score = {}'.format(iteration, scoreFunction(energy_supplied_zipcodes, original_zip_weights))
+        # print 'Iteration {} Score = {}'.format(iteration, scoreFunction(energy_supplied_zipcodes, original_zip_weights))
 
     printInfo((scoreFunction(energy_supplied_zipcodes, original_zip_weights), battery_supplied_zipcodes, energy_supplied_zipcodes), original_zip_weights, zip_map)
 
     # print kmeans.inertia_
     # print_distribution_info(distribution, zip_weights)
     # detect_stacked(kmeans.cluster_centers_)
-    gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
+    # gp.graph_scikit(battery_locations, original_zip_coords, battery_supplied_zipcodes, energy_supplied_zipcodes, original_zip_weights)
 
 def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_zipcodes, zip_demands, energy_supplied_zipcodes, battery_coord, zip_coords):
     for zip_index in zip_indexes:
@@ -65,8 +65,9 @@ def battery_assignments(index, zip_indexes, battery_energies, battery_supplied_z
         zip_energy_demand = zip_demands[zip_index] * cfg.percentage_fulfill
         current_zip_supply = energy_supplied_zipcodes[zip_index]
         distance = util.getDistance(battery_coord, tuple(zip_coords[zip_index]))
-        if battery_energies[index] + current_zip_supply <= zip_energy_demand:
-            energy_supplied_zipcodes[zip_index] += util.energyLoss(distance, battery_energies[index])
+        battery_energy_with_loss = util.energyLoss(distance, battery_energies[index])
+        if battery_energy_with_loss + current_zip_supply <= zip_energy_demand:
+            energy_supplied_zipcodes[zip_index] += battery_energy_with_loss
             battery_supplied_zipcodes[index][zip_index] += battery_energies[index]
             battery_energies[index] = 0
             break
@@ -84,7 +85,7 @@ def scoreFunction(energy_supplied_zipcodes, zip_demands):
     for index, val in enumerate(energy_supplied_zipcodes):
         score += val
         total += zip_demands[index]
-    return (score / total, total)
+    return (score, total)
 
 def sort_distribution(distribution, coords, centers):
     for i, index in enumerate(distribution):
@@ -123,13 +124,14 @@ def detect_stacked(centers):
     print len(result)
 
 def printInfo(val, zip_demands, zip_map):
-    print '\nFinal Score: {} (given {} batteries of size {} MW)'.format(val[0][0], cfg.n_batteries, cfg.battery_size_MW)
+    print '\nFinal Score: {} (given {} batteries of size {} MW)'.format((val[0][0] / val[0][1]), cfg.n_batteries, cfg.battery_size_MW)
     print 'Perfect Score: {}'.format((cfg.n_batteries * cfg.battery_month_KWH) / val[0][1])
-    print 'Our solution reaches {:.1%} of perfect score.\n'.format(val[0][0] / ((cfg.n_batteries * cfg.battery_month_KWH) / val[0][1]))
-    print 'Battery Zipcode Supply Distributions (KWh):'
-    util.printListDict(val[1], zip_map)
-    print 'Zipcode Energy Supplied (KWh):'
-    util.printListDictAppend(val[2], zip_demands, zip_map)
+    print 'Our solution reaches {:.1%} of perfect score.'.format((val[0][0] / val[0][1]) / ((cfg.n_batteries * cfg.battery_month_KWH) / val[0][1]))
+    print 'Cost per KWh: ${:,.2f}\n'.format((cfg.n_batteries * (cfg.base_cost + ((cfg.battery_month_KWH * cfg.cost_per_KWh) / 30))) / (val[0][0]))
+    # print 'Battery Zipcode Supply Distributions (KWh):'
+    # util.printListDict(val[1], zip_map)
+    # print 'Zipcode Energy Supplied (KWh):'
+    # util.printListDictAppend(val[2], zip_demands, zip_map)
 
 if __name__ == '__main__':
 	main()
